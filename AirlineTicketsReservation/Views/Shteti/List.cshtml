@@ -1,0 +1,96 @@
+﻿@using AirlineTicketsReservation.Models;
+@model PaginatedList<AirlineTicketsReservation.Models.Shteti>
+@{
+}
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Të dhënat për shtete</h1>
+</div>
+
+<div class="container  py-5">
+    <div class="row">
+        <div class="col-md-6 mb-5">
+            <a asp-area="" asp-controller="Shteti" asp-action="Add" class="btn btn-primary">
+                Add
+            </a>
+        </div>
+        <div class="col-md-6">
+            <form asp-action="List" method="get" class="text-right">
+                <div>
+                    <label for="sortOrder">Sort By:</label>
+                    <select id="sortOrder" name="sortOrder" asp-items="@ViewBag.SortOrderOptions">
+                        <option value="">-- Select --</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-secondary">Apply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+
+        <table class="table mb-5">
+            <thead class="thead-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Emri</th>
+
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var shteti in Model)
+                {
+                    <tr>
+                        <td>@shteti.Id</td>
+                        <td>@shteti.Emri</td>
+
+                        <td>
+                            <a asp-area="" asp-controller="Shteti"
+                               asp-action="Edit" asp-route-id="@shteti.Id" class="btn btn-warning">
+                                Edit
+                            </a>
+                        </td>
+
+                        <td>
+                            <form asp-controller="Shteti" asp-action="Delete" method="post">
+                                <input type="hidden" name="Id" value="@shteti.Id" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-center mb-5">
+            @if (Model.HasPreviousPage)
+            {
+                <a asp-action="List" asp-route-page="1" class="btn btn-outline-secondary">First</a>
+                <a asp-action="List" asp-route-page="@Model.PageIndex - 1" class="btn btn-outline-secondary">Previous</a>
+            }
+
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <a asp-action="List" asp-route-page="@i" class="btn btn-outline-secondary @(i == Model.PageIndex ? "active" : "")">@i</a>
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <a asp-action="List" asp-route-page="@Model.PageIndex + 1" class="btn btn-outline-secondary">Next</a>
+                <a asp-action="List" asp-route-page="@Model.TotalPages" class="btn btn-outline-secondary">Last</a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>No Country Found!</p>
+        </div>
+    }
+
+</div> 

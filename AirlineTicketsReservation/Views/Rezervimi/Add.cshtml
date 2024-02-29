@@ -1,0 +1,173 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.AddRezervimiRequest
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .bg-secondary {
+        background-color: #ff3366;
+        color: #ffffff;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .py-2 {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .py-5 {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: black;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 2px solid black;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+        color: #333;
+    }
+
+    .btn-dark {
+        background-color: #333;
+        color: #ffffff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* Additional styles for checkboxes */
+    .form-check-label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+        /* Style when the select element is focused */
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+</style>
+<<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Ju lutemi plotësoni këtë formular për rezervimin!</h1>
+</div>
+
+
+<div class="container py-5">
+    <form method="post" id="rezervimiForm">
+
+        <div class="mb-3">
+            <label class="form-label">Emri Pasagjerit</label>
+            <input type="text" class="form-control" id="emriPasagjerit" asp-for="EmriPasagjerit" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Mbiemri Pasagjerit</label>
+            <input type="text" class="form-control" id="mbiemriPasagjerit" asp-for="MbiemriPasagjerit" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" asp-for="Email" required />
+        </div>
+        <div class="mb-4 ">
+            <label class="form-label">Klasi</label>
+            <select class="form-control" id="klasi" asp-for="Klasi">
+                <option value="Economic">Economic</option>
+                <option value="VIP">VIP</option>
+                <option value="Business">Business</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-check-label">Select Currency For Payment:</label>
+            <input type="checkbox" id="eur" name="Currency" value="EUR" />
+            EUR
+            </label>
+            <label class="form-check-label">
+                <input type="checkbox" id="usd" name="Currency" value="USD" />
+                USD
+            </label>
+        </div>
+        <input type="hidden" asp-for="FluturimiId" id="FluturimiId" />
+        <div class="mb-3">
+            <label class="form-label">Data e Rezervimit</label>
+            <input type="datetime-local" class="form-control" id="dataERezervimit" asp-for="Data_e_Rezervimit" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-check-label">
+                <input type="checkbox" id="kthyese" asp-for="Kthyese" />
+                Kthyese
+            </label>
+        </div>
+        <div class="mb-3" id="dataEKthimitDiv">
+            <label class="form-label">Data e Kthimit</label>
+            <input type="datetime-local" class="form-control" id="dataEKthimit" asp-for="Data_e_Kthimit" />
+        </div>
+
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">
+                Save
+            </button>
+        </div>
+
+    </form>
+</div>
+
+@section scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the value of FluturimiId from the URL query parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const fluturimiId = urlParams.get('fluturimiId');
+
+            // Set the value of the hidden input
+            document.getElementById('FluturimiId').value = fluturimiId;
+
+            // Fetch the flight details based on FluturimiId
+            fetch(`/Fluturimi/GetCmimi?fluturimiId=${fluturimiId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Assuming 'cmimi' is the property in the response representing the flight price
+                    document.getElementById('cmimi').innerText = `Cmimi: $${data.cmimi}`;
+                })
+                .catch(error => console.error('Error fetching Cmimi:', error));
+        });
+    </script>
+}
+

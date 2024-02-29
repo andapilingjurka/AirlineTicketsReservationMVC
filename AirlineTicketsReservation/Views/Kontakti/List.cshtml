@@ -1,0 +1,154 @@
+﻿@using AirlineTicketsReservation.Models;
+@model PaginatedList<AirlineTicketsReservation.Models.Kontakti>
+@{
+}
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Të dhënat për mesazhet</h1>
+</div>
+
+<div class="container  py-5">
+    <div class="row">
+        <div class="col-md-6 mb-5">
+            @* <a asp-area="" asp-controller="Kontakti" asp-action="Add" class="btn btn-primary">
+            Add
+            </a>*@
+        </div>
+        <div class="col-md-6 text-md-right">
+            <form method="get" asp-controller="Kontakti" asp-action="List" id="filterForm" class="d-flex justify-content-end">
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="prefix049" name="prefix049" />
+                    <label class="form-check-label" for="prefix049">049</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="prefix044" name="prefix044" />
+                    <label class="form-check-label" for="prefix044">044</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="prefix043" name="prefix043" />
+                    <label class="form-check-label" for="prefix043">043</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="prefix045" name="prefix045" />
+                    <label class="form-check-label" for="prefix045">045</label>
+                </div>
+
+                <button type="button" class="btn btn-secondary ml-2" onclick="resetFilter()">Reset</button>
+            </form>
+        </div>
+    </div>
+
+
+    @if (Model != null && Model.Any())
+    {
+
+        <table class="table mb-5">
+            <thead class="thead-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Emri</th>
+                    <th>Mbiemri</th>
+                    <th>Email</th>
+                    <th>Telefoni</th>
+                    <th>Mesazhi</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var kontakti in Model)
+                {
+                    <tr>
+                        <td>@kontakti.KontaktiID</td>
+                        <td>@kontakti.Emri</td>
+                        <td>@kontakti.Mbiemri</td>
+                        <td>@kontakti.Email</td>
+                        <td>@kontakti.Telefoni</td>
+                        <td>@kontakti.Mesazhi</td>
+
+                        <td>
+                            <a asp-area="" asp-controller="Kontakti"
+                               asp-action="Delete" asp-route-KontaktiID="@kontakti.KontaktiID" class="btn btn-danger">
+                                Delete
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        <div class="text-center mb-5">
+            @if (Model.HasPreviousPage)
+            {
+                <a asp-action="List" asp-route-page="1" class="btn btn-outline-secondary">First</a>
+                <a asp-action="List" asp-route-page="@Model.PageIndex - 1" class="btn btn-outline-secondary">Previous</a>
+            }
+
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <a asp-action="List" asp-route-page="@i" class="btn btn-outline-secondary @(i == Model.PageIndex ? "active" : "")">@i</a>
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <a asp-action="List" asp-route-page="@Model.PageIndex + 1" class="btn btn-outline-secondary">Next</a>
+                <a asp-action="List" asp-route-page="@Model.TotalPages" class="btn btn-outline-secondary">Last</a>
+            }
+        </div>
+
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>No Message Found!</p>
+        </div>
+    }
+
+</div>
+@section scripts {
+    <script>
+        // Function to apply the filter when checkboxes are changed
+        function applyFilter() {
+            var selectedPrefixes = [];
+
+            // Get selected prefixes
+            if (document.getElementById('prefix049').checked) {
+                selectedPrefixes.push('prefix049=true');
+            }
+            if (document.getElementById('prefix044').checked) {
+                selectedPrefixes.push('prefix044=true');
+            }
+            if (document.getElementById('prefix043').checked) {
+                selectedPrefixes.push('prefix043=true');
+            }
+            if (document.getElementById('prefix045').checked) {
+                selectedPrefixes.push('prefix045=true');
+            }
+
+            // Create a query string with selected prefixes
+            var queryString = selectedPrefixes.join('&');
+
+            // Redirect to the List action with the query string
+            window.location.href = '/Kontakti/List?' + queryString;
+        }
+
+        // Attach the applyFilter function to the change event of checkboxes
+        document.getElementById('prefix049').addEventListener('change', applyFilter);
+        document.getElementById('prefix044').addEventListener('change', applyFilter);
+        document.getElementById('prefix043').addEventListener('change', applyFilter);
+        document.getElementById('prefix045').addEventListener('change', applyFilter);
+
+        function resetFilter() {
+            // Uncheck all checkboxes
+            document.getElementById('prefix049').checked = false;
+            document.getElementById('prefix044').checked = false;
+            document.getElementById('prefix043').checked = false;
+            document.getElementById('prefix045').checked = false;
+
+            // Submit the form to reset the filter
+            document.getElementById('filterForm').submit();
+        }
+    </script>
+}

@@ -1,0 +1,110 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.AddRezervimiVRequest
+
+
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .form-container {
+        max-width: 500px;
+        margin: auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 8px 8px 0 0;
+    }
+
+        .form-header h1 {
+            margin: 0;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .form-select {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .btn-dark {
+        background-color: #343a40;
+        color: #fff;
+    }
+</style>
+
+<div class="bg-opacity-10 py-2 form-header">
+    <div class="container" style="text-align: center;">
+        <h1 style="font-family: 'Times New Roman', Times, serif;">Rezervo!</h1>
+    </div>
+</div>
+<div class="container py-5 form-container">
+    <form method="post">
+<div class="form-group">
+    <label class="form-label">Email</label>
+    <input type="email" class="form-control" id="emri" asp-for="Email" required />
+    <span class="text-danger" asp-validation-for="Email"></span>
+</div>
+
+<div class="form-group">
+    <label class="form-label">Data Fillimit</label>
+    <input type="datetime-local" class="form-control" id="emri" asp-for="DataFillimit" required />
+    <span class="text-danger" asp-validation-for="DataFillimit"></span>
+</div>
+
+<div class="form-group">
+    <label class="form-label">Data Kthimit</label>
+    <input type="datetime-local" class="form-control" id="emri" asp-for="DataKthimit" required />
+    <span class="text-danger" asp-validation-for="DataKthimit"></span>
+</div>
+
+<div class="form-group">
+    <label class="form-label">Vetura ID</label>
+    <input type="text" class="form-control" id="emri" asp-for="VeturaID" readonly required />
+    <span class="text-danger" asp-validation-for="VeturaID"></span>
+</div>
+
+<div class="form-group">
+    <label class="form-label">Cmimi per Dite</label>
+    <input type="text" class="form-control" id="emri" asp-for="Cmimi" readonly required />
+    <span class="text-danger" asp-validation-for="Cmimi"></span>
+</div>
+
+<div class="form-group">
+    <label class="form-label">Select Airport</label>
+    @Html.DropDownListFor(m => m.AeroportiID, Model.Aeroportet, "Select Airport", new { @class = "form-select", required = "required" })
+    <span class="text-danger" asp-validation-for="AeroportiID"></span>
+</div>
+<div class="form-group">
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
+    </form>
+</div>
+

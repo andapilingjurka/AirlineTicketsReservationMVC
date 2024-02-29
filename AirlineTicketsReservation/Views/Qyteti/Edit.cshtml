@@ -1,0 +1,74 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.EditQytetiRequest
+@{
+}
+
+<div class=" bg-opacity-10 py-2">
+    <h1>Edit Qyteti</h1>
+</div>
+
+<div class="container py-5">
+    <form method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Id</label>
+            <input type="text" class="form-control" id="id" asp-for="Id" readonly />
+            <span class="text-danger" asp-validation-for="Id"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Emri</label>
+            <input type="text" class="form-control" id="emri" asp-for="Emri" required />
+            <span class="text-danger" asp-validation-for="Emri"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ZipKodi</label>
+            <input type="text" class="form-control" id="zipkodi" asp-for="ZipCode" required />
+            <span class="text-danger" asp-validation-for="ZipCode"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Zgjedh Shtetin</label>
+            @Html.DropDownListFor(m => m.ShtetiId, Model.Shtetet, null, new { @class = "form-select" })
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Foto</label>
+            <input type="file" class="form-control" id="foto" asp-for="Image" required onchange="updateImagePreview()" />
+            <span class="text-danger" asp-validation-for="Image"></span>
+        </div>
+
+        <div class="mb-3">
+            <img id="imagePreview" src="~/images/Qyteti/@Url.Content(Model.Image)" alt="Qyteti Image" style="max-width: 200px; max-height: 200px;" />
+        </div>
+
+
+        <div class="mb-3">
+            <div class="d-flex">
+                <button type="submit" class="btn btn-dark">Update</button>
+            </div>
+
+        </div>
+
+    </form>
+
+
+    <script>
+        function updateImagePreview() {
+            var input = document.getElementById('foto');
+            var preview = document.getElementById('imagePreview');
+            var file = input.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
+
+</div>

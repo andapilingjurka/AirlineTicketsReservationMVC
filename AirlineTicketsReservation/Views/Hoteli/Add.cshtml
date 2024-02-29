@@ -1,0 +1,44 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.AddHoteliRequest
+
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Shto Hotel</h1>
+</div>
+
+<div class="container py-5 form-container">
+    <form method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Emri</label>
+            <input type="text" class="form-control" id="emri" asp-for="Emri" required />
+            <span class="text-danger" asp-validation-for="Emri"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Adresa</label>
+            <input type="text" class="form-control" id="adresa" asp-for="Adresa" required />
+            <span class="text-danger" asp-validation-for="Adresa"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Pershkrimi</label>
+            <input type="text" class="form-control" id="pershkrimi" asp-for="Pershkrimi" required />
+            <span class="text-danger" asp-validation-for="Pershkrimi"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Zgjedh Qytetin</label>
+            @Html.DropDownListFor(m => m.QytetiId, Model.Qytetet, "Select Shtetet", new { @class = "form-select" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Foto</label>
+            <input type="file" class="form-control" id="foto" asp-for="Image" required />
+            <span class="text-danger" asp-validation-for="Image"></span>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">Save</button>
+        </div>
+    </form>
+</div>

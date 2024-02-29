@@ -1,0 +1,82 @@
+﻿@model List<AirlineTicketsReservation.Models.Hoteli>
+<style>
+    .titulli {
+        margin: 0;
+        background: url('@Url.Content("~/images/Hoteli/hotel4.jpg")') no-repeat center center fixed;
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 100px;
+        height: 100vh;
+        padding-top: 250px
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+
+    .p-hotelet {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    .qytetet {
+        margin-bottom: 100px;
+        margin-top: 100px;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: row;
+        height: 300px;
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+    }
+
+        .card img {
+            width: 50%;
+            object-fit: cover;
+            height: 100%;
+        }
+
+    .card-body {
+        width: 50%;
+        padding: 15px;
+        height: 100%;
+    }
+
+    .btn-hoteli {
+        margin-top: 100px;
+    }
+</style>
+
+<div class="titulli">
+    <h1 class="display-8">Ndihuni si në shtëpinë tuaj, larg shtëpisë</h1>
+    <p class="p-hotelet">Hotele që shndërrojnë udhëtimin në një aventurë të mrekullueshme.</p>
+</div>
+
+<div class="container mt-6 qytetet">
+    <div class="row">
+        @foreach (var hoteli in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <img src="~/images/Hoteli/@Url.Content(hoteli.Image)" alt="Hoteli Image">
+                    <div class="card-body text-left">
+                        <h5 class="card-title">@hoteli.Emri</h5>
+                        <p class="card-text">@hoteli.Adresa</p>
+
+
+                        <a href="@Url.Action("Details", new { id = hoteli.Id })" class="btn btn-warning btn-hoteli">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

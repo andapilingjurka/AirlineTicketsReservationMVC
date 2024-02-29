@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Your Page Title</title>
+</head>
+<body>
+    <style>
+
+        .image-container {
+            max-height: 100vh;
+            overflow: hidden;
+        }
+
+        .responsive-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Section 2 */
+        #section2-content {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .left {
+            flex: 1;
+            overflow: hidden;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .image-container {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image {
+            display: block;
+            width: 100%;
+        }
+
+
+
+        .additional-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 40px;
+            margin: 10px;
+        }
+
+            .additional-content img {
+                width: 600px;
+                height: auto;
+                margin-right: 80px;
+            }
+
+
+        .right {
+            flex: 2;
+            text-align: justify;
+            max-width: 600px;
+            margin: 0 20px;
+        }
+
+            .right h1 {
+                text-align: center;
+                font-size: 2rem;
+                padding-bottom: 10px;
+            }
+
+            .right h4 {
+                text-align: center;
+                text-transform: uppercase;
+                padding-bottom: 20px;
+            }
+
+            .right p {
+                line-height: 1.5;
+            }
+
+        .btn-home {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #271e69;
+            color: #fff;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background-color 0.3s, color 0.3s, border 0.3s;
+        }
+
+            .btn-home:hover {
+                background-color: #fff;
+                color: #000;
+                border: 2px solid #000;
+            }
+
+        /* Section 3 */
+        .holiday-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+            margin-bottom: 100px;
+            margin-left: 200px;
+        }
+
+        .left-column, .right-column {
+            flex: 0 1 calc(50% - 20px);
+            margin: 0 10px;
+        }
+
+        .holiday-section {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+            .holiday-section h2 {
+                color: #333;
+                margin-bottom: 10px;
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            .holiday-section p {
+                color: #666;
+                line-height: 1.6;
+            }
+
+        .top-row {
+            width: 100%;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid gray;
+        }
+
+        .holiday-h1 {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    </style>
+
+
+
+    <div class="home-container">
+        <MyNavbar />
+        <div class="image-container">
+            <img src="@Url.Content("~/images/airport.jpg")" alt="Welcome Image" class="responsive-image" />
+        </div>
+
+        <section id="section2">
+            <section id="section2-content" class="container">
+                <aside class="left">
+                    <div class="additional-content">
+                        <img src="@Url.Content("~/images/airport2.jpg")" alt="Additional" />
+                    </div>
+                </aside>
+                <aside class="right">
+                    <h1> Eksploro Qiellin </h1>
+                    <h4> - Porta juaj drejt Udhetimeve pa pengesa - </h4>
+                    <p>
+                        Mirë se vini në Rezervimet e Biletave të Linjave Ajrore, ku
+                        udhëtimi juaj nis nga aspiratat deri te kujtimet e ngrohta. Ekipi
+                        ynë i përkushtuar i pasionuar për udhëtimet është i përkushtuar të
+                        ju ofrojë një eksperiencë udhëtimi personalizuar dhe të lehtë për
+                        tu realizuar sipas preferencave tuaja. Ne krenohemi në krijimin e
+                        itinerareve të dallueshme dhe të mbushura, duke siguruar që çdo
+                        udhëtim të jetë një bashkim i përkryer i emocionit, komoditetit
+                        dhe zbulimit kulturor. Nga destinacionet e njohura deri te
+                        thesurat e fshehura, kemi përgatitur me kujdes një varietet të
+                        pakufizuar të paketave udhëtimore për të përshtatur çdo shije dhe
+                        interes. Qoftë që dëshironi një pushim në plazh me diell, një
+                        aventurë me adrenalinë, apo një zhytje kulturore, ne jemi këtu për
+                        ju. Me vëmendje të veçantë ndaj detajeve dhe një dashuri të thellë
+                        për udhëtimin, synojmë të tejkalojmë pritshmëritë tuaja, duke bërë
+                        çdo udhëtim me ne një eksperiencë jashtëzakonisht të paharrueshme.
+                        Eksploroni botën me siguri, duke ditur se Rezervimet e Biletave të
+                        Linjave Ajrore janë këtu për të transformuar ëndrrat tuaja
+                        udhëtimore në realitet.
+                    </p>
+
+                    <a href="#" class="btn btn-primary btn-home">
+                        Lexo më shumë
+                    </a>
+                </aside>
+            </section>
+        </section>
+
+        <section class="holiday-container container">
+            <div class="top-row">
+                <h1 class="holiday-h1">- Shërbimet tona -</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="holiday-section">
+                        <h2>Eksploro Destinacione Pasionante</h2>
+                        <p>
+                            Jeta është një aventurë, dhe udhëtimi juaj me ne do të jetë po
+                            ashtu! Nisni një udhëtim të guiduar përtej zonës suaj të
+                            rehatshme, duke krijuar përralla për tu ndarë për vite të tëra.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="holiday-section">
+                        <h2>Zbuloni Mrekullitë Kulturore</h2>
+                        <p>
+                            Hapieni thesarin kulturor të botës me planifikim tonë ekspert
+                            dhe ekzekutim të përsosur. Rrjeti ynë i gjërë siguron
+                            udhëheqësit më të mirë, kohëzgjatjen ideale dhe qasje ekskluzive
+                            në mrekullitë kulturore në të gjithë botën.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="holiday-section">
+                        <h2>Jet-Set në Avantura Safari</h2>
+                        <p>
+                            Qoftë se është safari juaj i parë apo një ekspeditë në vende të
+                            largëta, ne garantojmë të tejkaluarit e pritshmërive tuaja me
+                            përvojë të ngjashme dhe të paharrueshme!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="holiday-section">
+                        <h2>Pushime Romantike</h2>
+                        <p>
+                            Nga mini-moon magjikë deri te pushime ëndërruese për muajt e
+                            mjegullt, ne krijojmë përvoja më të paharrueshme për udhëtimin
+                            tuaj romantik një herë në jetë!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="holiday-section">
+                        <h2>Fluturo me Familjen</h2>
+                        <p>
+                            Pushimet familjare janë për gjetjen e një balanci të përsosur!
+                            Aktivitetet e personalizuara sigurojnë që çdo anëtar i familjes,
+                            nga bebat deri te gjyshërët, të ketë një përvojë po aq të
+                            mrekullueshme. Detajet bëjnë dallimin.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="holiday-section">
+                        <h2>Pushime në Vila Luksoze</h2>
+                        <p>
+                            Ideale për familjet apo grupet më të mëdha, zgjedhja jonë e
+                            shtëpive private fantastike garanton një pushim të ideuar.
+                            Kujdesi për të gjitha aspektet siguron një përvojë të
+                            paharrueshme.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>

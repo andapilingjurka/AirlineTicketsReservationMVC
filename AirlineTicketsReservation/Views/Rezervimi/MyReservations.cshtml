@@ -1,0 +1,60 @@
+﻿@model List<AirlineTicketsReservation.Models.Rezervimi>
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Rezervimet Tuaja të Fluturimeve</h1>
+</div>
+
+<div class="container py-5">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Passenger Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Currency</th>
+                    <th scope="col">Flight Id</th>
+                    <th scope="col">Return</th>
+                    <th scope="col">Reservation Date</th>
+                    <th scope="col">Return Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rezervimi in Model)
+                {
+                    <tr>
+                        <td>@rezervimi.Id</td>
+                        <td>@($"{rezervimi.EmriPasagjerit} {rezervimi.MbiemriPasagjerit}")</td>
+                        <td>@rezervimi.Email</td>
+                        <td>@rezervimi.Klasi</td>
+                        <td>@rezervimi.Cmimi </td>
+                        <td>@rezervimi.Currency</td>
+                        <td>@rezervimi.FluturimiId</td>
+                        <td>@rezervimi.Kthyese</td>
+                        <td>@rezervimi.Data_e_Rezervimit</td>
+                        <td>@rezervimi.Data_e_Kthimit</td>
+                        <td>
+                            <a class="btn btn-warning btn-sm"
+                               asp-area=""
+                               asp-controller="Rezervimi"
+                               asp-action="Edit"
+                               asp-route-id="@rezervimi.Id">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>No Reservations Found!</p>
+        </div>
+    }
+</div>

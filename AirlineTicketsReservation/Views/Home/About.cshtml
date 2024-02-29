@@ -1,0 +1,259 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Your Page Title</title>
+    <!-- Mund të shtoni linjat e tjera të nevojshme të stilimit ose skriptit këtu -->
+</head>
+<body>
+    <style>
+        body {
+            background-color: #FFFF;
+            margin: 0;
+            padding: 0;
+        }
+
+        video::-webkit-media-controls,
+        video::-webkit-media-controls-panel,
+        video::-webkit-media-controls-enclosure {
+            display: none !important;
+        }
+
+        video {
+            outline: none; /* Për të hequr përshkrimin teksut në fokus */
+        }
+
+        /* Bën që videoja të mbulojë plotësisht faqen */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+
+        }
+
+        video {
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .card {
+            max-width: 300px;
+            padding: 20px;
+            margin: 10px;
+            border: 2px solid #e4f1fe;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #eaf6f6;
+            transition: transform 0.2s ease-in-out;
+            flex: 1;
+        }
+
+            .card:hover {
+                transform: scale(1.05);
+            }
+
+            .card h2 {
+                color: #333;
+                font-size: 1.6em;
+                margin-bottom: 15px;
+                font-family: "Times New Roman", Times, serif;
+                font-weight: bold;
+            }
+
+            .card p {
+                color: #666;
+                font-size: 1.1em;
+                line-height: 1.6;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+        .additional-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 40px;
+            margin: 10px;
+        }
+
+            .additional-content img {
+                width: 600px;
+                height: auto;
+                margin-right: 80px;
+            }
+
+            .additional-content div {
+                max-width: 600px;
+            }
+
+            .additional-content h2 {
+                margin-bottom: 10px;
+                font-weight: bold;
+                font-size: 29px;
+                text-align: center;
+            }
+
+            .additional-content p {
+                text-align: left;
+                line-height: 1.6;
+                color: #333;
+                font-family: "Times New Roman", Times, serif;
+            }
+
+        .enlarged-photo-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .enlarged-photo {
+            flex: 1;
+            margin: 2 30px;
+            padding: 20px;
+            margin: 10px;
+        }
+
+
+            .enlarged-photo img {
+                width: 90%;
+                height: auto;
+                border-radius: 80%;
+            }
+
+        .enlarged-photo-description {
+            margin-top: 10px;
+            text-align: center;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 14px;
+        }
+    </style>
+    <div class="video-container">
+        <video controls="false" autoplay muted loop>
+            <source src="@Url.Content("~/images/airline.mp4")" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="card-container">
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <h2>Kualiteti:</h2>
+                        <p>
+                            Ne punojmë vazhdimisht për të përmirësuar cilësinë e
+                            shërbimeve tona dhe për të siguruar një udhëtim të
+                            paharrueshëm për klientët tanë.
+                        </p>
+                    </div>
+                    </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <h2>Siguria:</h2>
+                        <p>
+                            Sigurimi i udhëtimit tuaj është prioriteti ynë. Ne
+                            bashkëpunojmë me kompanitë më të besueshme për të garantuar.
+                           
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card">
+                        <h2>Efikasiteti:</h2>
+                        <p>
+                            Me një platformë të avancuar dhe një ekip të specializuar, ne
+                            sigurojmë rezervime të shpejta dhe procese të lehta për
+                            klientët tanë.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card">
+                        <h2>Shërbimi i Klientit:</h2>
+                        <p>
+                            Ekipi ynë është gjithmonë në dispozicion për të përgjigjur
+                            pyetjet tuaja dhe për të ofruar ndihmë në gjithë procesin.
+                         
+                        </p>
+                    </div>
+                </div>
+        </div>
+       </div>
+
+        <div class="additional-content">
+            <img src="@Url.Content("~/images/pilots.jpg")" alt="Additional" />
+            <div class="cardd text-rightt">
+                <h2>Pse të na zgjidhni ne?</h2>
+                <p>
+                    Ne kuptojmë se zgjedhja e biletave të aeroplanit është një vendim i rëndësishëm. Për këtë arsye, jemi këtu për t'ju ofruar një përvojë udhëtimi të jashtëzakonshme. Me një angazhim ndaj çmimeve konkurruese, shërbimit të përkushtuar ndaj klientit dhe flotës sonë të përditësuar, ne ju sigurojmë një udhëtim të sigurt dhe të kënaqshëm. Për të bërë udhëtimin tuaj edhe më të veçantë, ofrojmë destinacione të shumta emocionuese dhe atraktive. Nëpërmjet programit tonë të përfitimeve ekskluzive, keni mundësinë të përfitoni nga oferta dhe privilegje speciale që bëjnë udhëtimin tuaj më të paharrueshëm. Zgjidhni ne për udhëtimin tuaj dhe lejoni që aventura të fillojë me një eksperiencë të re dhe emocionuese. Nëpërmjet fluturimit tonë, hapni dyert drejt një botë të re të mundësive dhe kënaqësive. Jemi këtu për t'u bërë pjesë e rrugëtimit tuaj, duke ju ofruar jo vetëm një biletë aeroplani, por një udhëtim që do të mbetet gjatë në kujtesën tuaj.
+                </p>
+            </div>
+            </div>
+        <h3>Çfarë thanë njerëzit për ne?</h3>
+        <div class="additional-content">
+            <div class="enlarged-photo">
+                <img src="@Url.Content("~/images/photo1.jpg")" alt="Photo 1" />
+                <div class="enlarged-photo-description">
+                    <p>
+                        "Faqja juaj është e lehtë për përdorim dhe ofron shumë mundësi për
+                        zgjedhje. Procesi i pagesës ishte i shpejtë dhe i sigurt.
+                        Gjithashtu, shërbimi klienti ishte shumë i mire. Do të rezervoj
+                        përsëri me ju në të ardhmen!"
+                    </p>
+                </div>
+            </div>
+
+            <div class="enlarged-photo">
+                <img src="@Url.Content("~/images/photo2.jpg")" alt="Photo 2" />
+                <div class="enlarged-photo-description">
+                    <p>
+                        "Kam përdorur shërbimin tuaj për herë të parë dhe kam mbetur shumë
+                        i kënaqur. Biletat ishin të përballueshme dhe procesi i rezervimit
+                        ishte i thjeshtë. Do ta rekomandoja me kënaqësi shërbimin tuaj."
+                    </p>
+                </div>
+            </div>
+
+            <div class="enlarged-photo">
+                <img src="@Url.Content("~/images/photo3.jpg")" alt="Photo 3" />
+                <div class="enlarged-photo-description">
+                    <p>
+                        "Një përvojë shumë e mirë me rezervimin e biletave nëpërmjet faqes
+                        suaj. Çmimet ishin konkurruese dhe kërkesa për ndryshime në datat
+                        e udhëtimit u trajtua me lehtësi.Ju faleminderit për një shërbim
+                        të shkëlqyeshëm!"
+                    </p>
+                </div>
+            </div>
+
+            <div class="enlarged-photo">
+                <img src="@Url.Content("~/images/photo4.jpg")" alt="Photo 4" />
+                <div class="enlarged-photo-description">
+                    <p>
+                        "Përvoja ime nga ju ishte e mrekullueshme. Faqja juaj ofron
+                        informacion të plotë për çdo udhëtim, duke përfshirë çmimet dhe
+                        oraret. Nuk ka pasur asnjë ngërç gjatë pagesës dhe biletat u
+                        dërguan menjëherë."
+                    </p>
+                </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>

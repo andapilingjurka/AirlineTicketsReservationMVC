@@ -1,0 +1,40 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.AddOfertaRequest
+@{
+}
+
+<div class="bg-opacity-10 py-2 text-center">
+    <h1>Shto Ofertën</h1>
+</div>
+
+<div class="container py-5">
+    <form method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Cmimi</label>
+            <input type="text" class="form-control" id="heading" asp-for="Cmimi" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" id="heading" asp-for="Description" required />
+        </div>
+
+
+
+        <div class="mb-3">
+            <label class="form-label">Hotel</label>
+            @Html.DropDownListFor(model => model.HoteliId, Model.Hoteli, "Select Hotel", new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Flight</label>
+            @Html.DropDownListFor(model => model.FluturimiId, Model.Fluturimi, "Select Flight", new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">
+                Save
+            </button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,22 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.AddShtetiRequest
+@{
+}
+
+<div class="bg-opacity-10 py-2 text-center">
+    <h1>Shto Shtet</h1>
+</div>
+
+<div class="container py-5">
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Emri</label>
+            <input type="text" class="form-control" id="emri" asp-for="Emri" required />
+            <span class="text-danger" asp-validation-for="Emri"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">Save</button>
+        </div>
+    </form>
+</div>

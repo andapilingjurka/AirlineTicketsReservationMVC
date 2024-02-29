@@ -1,0 +1,86 @@
+﻿@model List<AirlineTicketsReservation.Models.Vetura>
+@{
+}
+
+<div>
+</div>
+<style>
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around; 
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 10px;
+        width: calc(33.33% - 20px); 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+</style>
+<div>
+    <form method="get" action="@Url.Action("Index")">
+        <label for="sortOrder">Zgjedh sipas:</label>
+        <select name="sortOrder" id="sortOrder" onchange="this.form.submit()">
+            <option value="normal" selected="@(ViewBag.PriceSortParam == "normal")">Normal</option>
+            <option value="asc" selected="@(ViewBag.PriceSortParam == "asc")">Çmimit te ulet</option>
+            <option value="desc" selected="@(ViewBag.PriceSortParam == "desc")">Çmimit te larte</option>
+        </select>
+        <div>
+
+            <label for="">Zgjedh sipas Modelit te Vetures:</label>
+
+            <label for="bmw">BMW</label>
+            <input type="checkbox" id="bmw" name="bmw" value="true" @(ViewBag.BMWChecked == "true" ? "checked" : "") />
+
+            <label for="porsche">Porsche</label>
+            <input type="checkbox" id="porsche" name="porsche" value="true" @(ViewBag.PorscheChecked == "true" ? "checked" : "") />
+
+            <input type="submit" value="Filtro" />
+        </div>
+    </form>
+</div>
+<div class="container py-5">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var vetura in Model)
+        {
+            <div class="card">
+                <p><b>Modeli: </b>@vetura.Modeli</p>
+                <p><b>Viti Prodhimit:</b> @vetura.VitiProdhimit</p>
+                <p><b>Karburanti: </b>@vetura.Karburanti</p>
+                <p><b>Çmimi per Dite:</b> @vetura.Cmimi€</p>
+                <img src="~/images/Vetura/@Url.Content(vetura.PhotoUrl)" alt="Vetura Image">
+                <p>
+                    <button onclick="viewDetails(@vetura.VeturaID)">View Details</button>
+                    <button onclick="rezervo(@vetura.VeturaID, @vetura.Cmimi)">Rezervo</button>
+                </p>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>Nuk ka asnjë veturë! </p>
+        </div>
+    }
+
+    <script>
+        function rezervo(veturaID, cmimi) {
+            window.location.href = '/RezervimiV/Add?veturaId=' + veturaID + '&cmimi=' + cmimi;
+        }
+
+        function viewDetails(veturaID) {
+            window.location.href = '/Vetura/Details?id=' + veturaID;
+        }
+    </script>
+</div> 

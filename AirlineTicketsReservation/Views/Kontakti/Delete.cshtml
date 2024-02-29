@@ -1,0 +1,60 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.DeleteKontaktiRequest
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+</div>
+
+<div class="container py-5">
+    <form asp-action="Delete" asp-route-KontaktiID="@Model.KontaktiID" method="post">
+
+        <div class="mb-3">
+            <label class="form-label">KontaktiID</label>
+            <input type="text" class="form-control" id="id" asp-for="KontaktiID" readonly />
+            <span class="text-danger" asp-validation-for="KontaktiID"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Emri</label>
+            <input type="text" class="form-control" id="emri" asp-for="Emri" readonly />
+            <span class="text-danger" asp-validation-for="Emri"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mbiemri</label>
+            <input type="text" class="form-control" id="mbiemri" asp-for="Mbiemri" readonly />
+            <span class="text-danger" asp-validation-for="Mbiemri"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" asp-for="Email" readonly />
+            <span class="text-danger" asp-validation-for="Email"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Numri Telefonit</label>
+            <input type="text" class="form-control" id="telefoni" asp-for="Telefoni" readonly />
+            <span class="text-danger" asp-validation-for="Telefoni"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Mesazhi</label>
+            <input type="text" class="form-control" id="mesazhi" asp-for="Mesazhi" readonly />
+            <span class="text-danger" asp-validation-for="Mesazhi"></span>
+        </div>
+
+
+
+        <div class="mb-3">
+            <div class="d-flex">
+                <button type="submit" class="btn btn-dark">Delete</button>
+            </div>
+
+        </div>
+
+
+    </form>
+</div>

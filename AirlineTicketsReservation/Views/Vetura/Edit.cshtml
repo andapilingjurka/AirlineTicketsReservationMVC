@@ -1,0 +1,84 @@
+﻿@model AirlineTicketsReservation.Models.ViewModel.EditVeturaRequest
+@{
+}
+
+<div class="bg-opacity-10 py-2 text-center">
+    <h1>Edit Vetura</h1>
+</div>
+
+<div class="container py-5">
+    <form method="post">
+
+
+        <div class="mb-3">
+            <label class="form-label">VeturaID</label>
+            <input type="text" class="form-control" id="vetura" asp-for="VeturaID" required />
+            <span class="text-danger" asp-validation-for="VeturaID"></span>
+        </div>
+       
+
+        <div class="mb-3">
+            <label class="form-label">Modeli</label>
+            <input type="text" class="form-control" id="modeli" asp-for="Modeli" required />
+            <span class="text-danger" asp-validation-for="Modeli"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">VitiProdhimit</label>
+            <input type="text" class="form-control" id="modeli" asp-for="VitiProdhimit" required />
+            <span class="text-danger" asp-validation-for="VitiProdhimit"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Karburanti</label>
+            <input type="text" class="form-control" id="modeli" asp-for="Karburanti" required />
+            <span class="text-danger" asp-validation-for="Karburanti"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Cmimi</label>
+            <input type="text" class="form-control" id="modeli" asp-for="Cmimi" required />
+            <span class="text-danger" asp-validation-for="Cmimi"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Pershkrimi i Modelit</label>
+            <input type="text" class="form-control" id="modeli" asp-for="PershkrimiModelit" required />
+            <span class="text-danger" asp-validation-for="PershkrimiModelit"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Foto</label>
+            <input type="file" class="form-control" id="foto" asp-for="PhotoUrl" required onchange="updateImagePreview()" />
+            <span class="text-danger" asp-validation-for="PhotoUrl"></span>
+        </div>
+
+        <div class="mb-3">
+            <img id="imagePreview" src="~/images/Vetura/@Url.Content(Model.PhotoUrl)"  style="max-width: 200px; max-height: 200px;" />
+        </div>
+
+
+   
+
+
+
+        <div class="mb-3">
+            <div class="d-flex">
+                <button type="submit" class="btn btn-dark">Update</button>
+
+                <button type="submit" class="btn btn-danger ms-2" asp-area=""
+                        asp-controller="Vetura" asp-action="Delete">
+                    Delete
+                </button>
+            </div>
+
+        </div>
+
+
+    </form>
+    }
+  
+</div>

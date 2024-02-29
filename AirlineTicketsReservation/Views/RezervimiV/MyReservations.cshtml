@@ -1,0 +1,64 @@
+﻿@model List<AirlineTicketsReservation.Models.RezervimiV>
+@{
+}
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Rezervimet Tuaja të Veturave</h1>
+</div>
+
+<div class="container  py-5">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>Email</th>
+                    <th>DataFillimit</th>
+                    <th>DataKthimit</th>
+                    <th>Cmimi</th>
+
+                    <th>AeroportiID</th>
+                    <th>VeturaID</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rezervimi in Model)
+                {
+                    <tr>
+
+                        <td>@rezervimi.RezervimiID</td>
+                        <td>@rezervimi.Email</td>
+
+                        <td>@rezervimi.DataFillimit</td>
+                        <td>@rezervimi.DataKthimit</td>
+                        <td>@rezervimi.Cmimi</td>
+
+                        <td>@rezervimi.AeroportiID</td>
+                        <td>@rezervimi.VeturaID</td>
+
+
+                        <td>
+                            <a asp-area="" asp-controller="RezervimiV"
+                               asp-action="Edit" asp-route-id="@rezervimi.RezervimiID">
+                                Edit
+                            </a>
+                          
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>No Reservation Found!</p>
+        </div>
+    }
+
+</div>

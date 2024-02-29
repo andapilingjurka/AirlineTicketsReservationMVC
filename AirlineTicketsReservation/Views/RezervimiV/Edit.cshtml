@@ -1,0 +1,64 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.EditRezervimiVRequest
+@{
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+     <h1>Edit Rezervimi</h1>
+</div>
+
+<div class="container py-5">
+    <form method="post">
+     
+
+          <div class="mb-3">
+            <label class="form-label">RezervimiID</label>
+            <input type="text" class="form-control" id="qyeti" asp-for="RezervimiID" required />
+            <span class="text-danger" asp-validation-for="RezervimiID"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="emri" asp-for="Email" required />
+            <span class="text-danger" asp-validation-for="Email"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">DataFillimit</label>
+            <input type="date" class="form-control" id="emri" asp-for="DataFillimit" required />
+            <span class="text-danger" asp-validation-for="DataFillimit"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">DataKthimit</label>
+            <input type="date" class="form-control" id="emri" asp-for="DataKthimit" required />
+            <span class="text-danger" asp-validation-for="DataKthimit"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">VeturaID</label>
+            <input type="text" class="form-control" id="emri" asp-for="VeturaID" required />
+            <span class="text-danger" asp-validation-for="VeturaID"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Zgjedh Aeroportin</label>
+            @Html.DropDownListFor(m => m.AeroportiID, Model.Aeroportet, null, new { @class = "form-select" })
+        </div>
+
+
+        <div class="mb-3">
+            <div class="d-flex">
+                <button type="submit" class="btn btn-dark">Update</button>
+
+             
+            </div>
+
+        </div>
+
+
+    </form>
+    }
+   
+</div>

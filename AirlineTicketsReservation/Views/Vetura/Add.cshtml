@@ -1,0 +1,62 @@
+﻿@model AirlineTicketsReservation.Models.ViewModel.AddVeturaRequest
+
+
+
+<div class="bg-opacity-10 py-2 text-center">
+    <h1>Shto Veturë</h1>
+</div>
+
+<div class="container py-5">
+<form method="post" enctype="multipart/form-data">
+     
+
+        <div class="mb-3">
+            <label class="form-label">Modeli</label>
+            <input type="text" class="form-control" id="modeli" asp-for="Modeli" required />
+            <span class="text-danger" asp-validation-for="Modeli"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">VitiProdhimit</label>
+            <input type="text" class="form-control" id="modeli" asp-for="VitiProdhimit" required />
+            <span class="text-danger" asp-validation-for="VitiProdhimit"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Karburanti</label>
+            <input type="text" class="form-control" id="modeli" asp-for="Karburanti" required />
+            <span class="text-danger" asp-validation-for="Karburanti"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Pershkrimi i Modelit</label>
+            <input type="text" class="form-control" id="modeli" asp-for="PershkrimiModelit" required />
+            <span class="text-danger" asp-validation-for="PershkrimiModelit"></span>
+        </div>
+
+
+
+        <div class="mb-3">
+            <label class="form-label">Cmimi</label>
+            <input type="text" class="form-control" id="modeli" asp-for="Cmimi" required />
+            <span class="text-danger" asp-validation-for="Cmimi"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Foto</label>
+            <input type="file" class="form-control" id="foto" asp-for="PhotoUrl" required />
+            <span class="text-danger" asp-validation-for="PhotoUrl"></span>
+        </div>
+
+     
+ 
+
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
+    </form>
+</div>

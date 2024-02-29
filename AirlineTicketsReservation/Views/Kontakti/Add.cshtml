@@ -1,0 +1,94 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.AddKontaktiRequest
+@{
+}
+
+<style>
+    .kontakti {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 100px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-kontakti,
+    .image-container {
+        flex: 1;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .image-container {
+        background-image: url('/images/kontakti.jpg');
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        height: 600px;
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+
+    .form-kontakti {
+        max-width: 400px;
+        .h3-kontakti
+
+    {
+        text-align: center;
+    }
+
+    .p-kontakti {
+        text-align: center;
+    }
+
+</style>
+
+
+<div class="container py-5 kontakti mt-5">
+
+    <div class="image-container">
+        <!-- This div will contain your image -->
+    </div>
+
+    <div class="form-container form-kontakti">
+        <form method="post">
+            <h3 class="h3-kontakti">Na kontaktoni</h3>
+            <p class="p-kontakti">Ne jemi të lumtur te ju ndihmojmë !</p>
+
+            <div class="mb-3">
+                <label class="form-label">Emri</label>
+                <input type="text" class="form-control" id="emri" asp-for="Emri" required />
+                <span class="text-danger" asp-validation-for="Emri"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mbiemri</label>
+                <input type="text" class="form-control" id="mbiemri" asp-for="Mbiemri" required />
+                <span class="text-danger" asp-validation-for="Mbiemri"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="text" class="form-control" id="email" asp-for="Email" required />
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Numri Telefonit</label>
+                <input type="text" class="form-control" id="telefoni" asp-for="Telefoni" required />
+                <span class="text-danger" asp-validation-for="Telefoni"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mesazhi</label>
+                <textarea class="form-control" id="mesazhi" asp-for="Mesazhi" required rows="4"></textarea>
+                <span class="text-danger" asp-validation-for="Mesazhi"></span>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-dark">Send</button>
+            </div>
+        </form>
+    </div>
+
+</div>

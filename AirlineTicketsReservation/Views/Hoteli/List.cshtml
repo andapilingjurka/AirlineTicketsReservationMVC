@@ -1,0 +1,104 @@
+﻿@using AirlineTicketsReservation.Models;
+@model PaginatedList<AirlineTicketsReservation.Models.Hoteli>
+@{
+}
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Të dhënat për hotelet</h1>
+</div>
+
+<div class="container  py-5">
+    <div class="d-flex justify-content-between mb-5">
+        <div>
+            <a asp-area="" asp-controller="Hoteli" asp-action="Add" class="btn btn-primary custom-add-button">
+                Add
+            </a>
+        </div>
+
+        <div class="my-3">
+            <form asp-action="List" method="get" class="form-inline">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" placeholder="Search by hotel name" name="searchString" value="@ViewBag.SearchString" />
+                    <button class="btn btn-outline-secondary btn-sm" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    @if (Model != null && Model.Any())
+    {
+
+        <table class="table mb-5">
+            <thead class="thead-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Emri</th>
+                    <th>Adresa</th>
+                    <th>Pershkrimi</th>
+                    <th>QytetiID</th>
+                    <th>Foto</th>
+
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var hoteli in Model)
+                {
+                    <tr>
+
+                        <td>@hoteli.Id</td>
+                        <td>@hoteli.Emri</td>
+                        <td>@hoteli.Adresa</td>
+                        <td>@hoteli.Pershkrimi</td>
+                        <td>@hoteli.QytetiId</td>
+                        <td><img src="~/images/Hoteli/@Url.Content(hoteli.Image)" alt="Hoteli Image" style="max-width: 200px; max-height: 200px;"></td>
+
+                        <td>
+                            <a asp-area="" asp-controller="Hoteli"
+                               asp-action="Edit" asp-route-id="@hoteli.Id" class="btn btn-warning">
+                                Edit
+                            </a>
+                        </td>
+
+                        <td>
+                            <form asp-controller="Hoteli" asp-action="Delete" method="post">
+                                <input type="hidden" name="Id" value="@hoteli.Id" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        <div class="text-center mb-5">
+            @if (Model.HasPreviousPage)
+            {
+                <a asp-action="List" asp-route-page="1" class="btn btn-outline-secondary">First</a>
+                <a asp-action="List" asp-route-page="@Model.PageIndex - 1" class="btn btn-outline-secondary">Previous</a>
+            }
+
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <a asp-action="List" asp-route-page="@i" class="btn btn-outline-secondary @(i == Model.PageIndex ? "active" : "")">@i</a>
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <a asp-action="List" asp-route-page="@Model.PageIndex + 1" class="btn btn-outline-secondary">Next</a>
+                <a asp-action="List" asp-route-page="@Model.TotalPages" class="btn btn-outline-secondary">Last</a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>No Hotel Found!</p>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,20 @@
+﻿@model AirlineTicketsReservation.Models.Vetura
+
+<div class="container py-5">
+    @if (Model != null)
+    {
+        <div class="card" >
+            <p><b>Modeli: </b>@Model.Modeli</p>
+            <p><b>Viti Prodhimit:</b> @Model.VitiProdhimit</p>
+            <p><b>Karburanti: </b>@Model.Karburanti</p>
+            <p><b>Çmimi per Dite:</b> @Model.Cmimi€</p>
+            <p><b>Pershkrimi i Modelit:</b> @Model.PershkrimiModelit</p>
+
+            <img src="~/images/Vetura/@Url.Content(Model.PhotoUrl)" alt="Vetura Image">
+        </div>
+    }
+    else
+    {
+        <p>Vetura not found!</p>
+    }
+</div>

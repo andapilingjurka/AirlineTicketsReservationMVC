@@ -1,0 +1,75 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.EditFluturimiRequest
+@{
+
+}
+
+<div class="bg-opacity-10 py-2 text-center">
+    <h1>Edit Fluturimi</h1>
+</div>
+
+<div class="container py-5">
+    @if (Model != null)
+    {
+        <form method="post">
+
+            <div class="mb-3">
+                <label class="form-label">Id</label>
+                <input type="text" class="form-control" id="id" asp-for="Id" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Numri Fluturimit</label>
+                <input type="text" class="form-control" id="heading" asp-for="NrFluturimit" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Aeroporti i Nisjes</label>
+                <input type="text" class="form-control" id="pageTitle" asp-for="ArrivalAirport" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Aeroporti i Arritjes</label>
+                <input type="text" class="form-control" id="pageTitle" asp-for="DeparuteAirport" required />
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Koha e nisjes:</label>
+
+                <input type="datetime-local" class="form-control" asp-for="KohaENisjes" required />
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Koha e arritjes:</label>
+
+                <input type="datetime-local" class="form-control" asp-for="KohaEArritjes" required />
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Cmimi:</label>
+                <input type="number" class="form-control" id="shortDescription" asp-for="Cmimi" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Aeroplani</label>
+                @Html.DropDownListFor(model => model.AeroplaniId, Model.Aeroplani, "Select Aeroplani", new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Qyteti</label>
+                @Html.DropDownListFor(model => model.QytetiId, Model.Qyteti, "Select Qyteti", new { @class = "form-control" })
+            </div>
+
+            <div class="mb-3 d-flex">
+                <button type="submit" class="btn btn-dark">Update</button>
+
+            </div>
+
+        </form>
+    }
+    else
+    {
+        <p>No flight found!</p>
+    }
+</div>

@@ -1,0 +1,116 @@
+﻿@model PaginatedList<AirlineTicketsReservation.Models.Fluturimi>
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Të dhënat për fluturime</h1>
+</div>
+
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 mb-5">
+            <a asp-area="" asp-controller="Fluturimi" asp-action="Add" class="btn btn-primary">
+                Add
+            </a>
+        </div>
+        <div class="col-md-6">
+            <form asp-action="List" method="get" class="text-right">
+                <div>
+
+                    <label for="arrivalAirportFilter">Filter By Arrival Airport:</label>
+                    <input type="text" id="arrivalAirportFilter" name="arrivalAirportFilter" value="@ViewBag.ArrivalAirportFilter" />
+                    <button type="submit" class="btn btn-secondary">Apply</button>
+            </form>
+        </div>
+    </div>
+    @if (Model != null && Model.Any())
+    {
+
+
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Numri Fluturimit</th>
+                    <th scope="col">Departure Airport</th>
+                    <th scope="col">Arrival Airport</th>
+                    <th scope="col">Koha e Nisjes</th>
+                    <th scope="col">Koha e Arritjes</th>
+                    <th scope="col">Cmimi</th>
+                    <th scope="col">Aeroplani</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var fluturimi in Model)
+                {
+                    <tr>
+                        <td>@fluturimi.Id</td>
+                        <td>@fluturimi.NrFluturimit</td>
+                        <td>@fluturimi.DeparuteAirport</td>
+                        <td>@fluturimi.ArrivalAirport</td>
+                        <td>@fluturimi.KohaENisjes</td>
+                        <td>@fluturimi.KohaEArritjes</td>
+                        <td>@fluturimi.Cmimi </td>
+                        <td>
+                            @if (fluturimi.Aeroplani != null)
+                            {
+                                @fluturimi.Aeroplani.Kompania
+                            }
+                            else
+                            {
+                                <span class="text-danger">Aeroplani not available</span>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-warning btn-sm"
+                               asp-area=""
+                               asp-controller="Fluturimi"
+                               asp-action="Edit"
+                               asp-route-id="@fluturimi.Id">
+                                Edit
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm"
+                               asp-area=""
+                               asp-controller="Fluturimi"
+                               asp-action="Delete"
+                               asp-route-id="@fluturimi.Id">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            @if (Model.HasPreviousPage)
+            {
+                <a asp-action="List" asp-route-page="1" class="btn btn-outline-secondary">First</a>
+                <a asp-action="List" asp-route-page="@Model.PageIndex - 1" class="btn btn-outline-secondary">Previous</a>
+            }
+
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <a asp-action="List" asp-route-page="@i" class="btn btn-outline-secondary @(i == Model.PageIndex ? "active" : "")">@i</a>
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <a asp-action="List" asp-route-page="@Model.PageIndex + 1" class="btn btn-outline-secondary">Next</a>
+                <a asp-action="List" asp-route-page="@Model.TotalPages" class="btn btn-outline-secondary">Last</a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>No Flights Found!</p>
+        </div>
+    }
+
+
+</div>

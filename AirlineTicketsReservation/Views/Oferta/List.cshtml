@@ -1,0 +1,89 @@
+﻿@model PaginatedList<AirlineTicketsReservation.Models.Oferta>
+
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Të dhënat për ofertat</h1>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 mb-5">
+            <a asp-area="" asp-controller="Oferta" asp-action="Add" class="btn btn-primary">
+                Add
+            </a>
+        </div>
+
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Cmimi</th>
+                    <th scope="col">Hoteli</th>
+                    <th scope="col">Fluturimi</th>
+                    <th scope="col">Actions</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var oferta in Model)
+                {
+                    <tr>
+                        <td>@oferta.Id</td>
+                        <td>@oferta.Cmimi </td>
+                        <td>@oferta.Hoteli.Emri</td>
+                        <td>@oferta.Fluturimi.NrFluturimit</td>
+                        <td>
+                            <a class="btn btn-warning btn-sm"
+                               asp-area=""
+                               asp-controller="Oferta"
+                               asp-action="Edit"
+                               asp-route-id="@oferta.Id">
+                                Edit
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm"
+                               asp-area=""
+                               asp-controller="Oferta"
+                               asp-action="Delete"
+                               asp-route-id="@oferta.Id">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            @if (Model.HasPreviousPage)
+            {
+                <a asp-action="List" asp-route-page="1" class="btn btn-outline-secondary">First</a>
+                <a asp-action="List" asp-route-page="@Model.PageIndex - 1" class="btn btn-outline-secondary">Previous</a>
+            }
+
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <a asp-action="List" asp-route-page="@i" class="btn btn-outline-secondary @(i == Model.PageIndex ? "active" : "")">@i</a>
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <a asp-action="List" asp-route-page="@Model.PageIndex + 1" class="btn btn-outline-secondary">Next</a>
+                <a asp-action="List" asp-route-page="@Model.TotalPages" class="btn btn-outline-secondary">Last</a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>No Offers Found!</p>
+        </div>
+    }
+</div>
+

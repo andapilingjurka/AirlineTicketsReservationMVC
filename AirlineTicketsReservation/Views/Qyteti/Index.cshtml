@@ -1,0 +1,61 @@
+﻿@model List<AirlineTicketsReservation.Models.Qyteti>
+
+<style>
+    .titulli {
+        margin: 0;
+        background: url('@Url.Content("~/images/Qyteti/Tokyo.jpg")') no-repeat center center fixed;
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 100px;
+        height: 100vh;
+        padding-top: 250px
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+
+    .p-hotelet {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    .qytetet {
+        margin-bottom: 100px;
+        margin-top: 100px;
+    }
+
+
+    .card {
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div class="titulli">
+    <h1 class="display-8">Çdo qytet ka një zë të vet, dhe udhëtimi juaj është një melodi e pashuar</h1>
+</div>
+
+<div class="container mt-6 qytetet">
+    <div class="row">
+        @foreach (var qyteti in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="~/images/Qyteti/@Url.Content(qyteti.Image)" alt="Qyteti Image">
+                    <div class="card-body text-left">
+                        <h5 class="card-title">@qyteti.Emri</h5>
+                        <p class="card-text">@qyteti.ZipCode</p>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

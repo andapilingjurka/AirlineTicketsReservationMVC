@@ -1,0 +1,40 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.AddQytetiRequest
+
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Shto Qytet</h1>
+</div>
+
+
+
+<div class="container py-5 form-container">
+    <form method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Emri</label>
+            <input type="text" class="form-control" id="emri" asp-for="Emri" required />
+            <span class="text-danger" asp-validation-for="Emri"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">ZipKodi</label>
+            <input type="text" class="form-control" id="zipkodi" asp-for="ZipCode" required />
+            <span class="text-danger" asp-validation-for="ZipCode"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Zgjedh Shtetin</label>
+            @Html.DropDownListFor(m => m.ShtetiId, Model.Shtetet, "Select Shtetet", new { @class = "form-select" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Foto</label>
+            <input type="file" class="form-control" id="foto" asp-for="Image" required />
+            <span class="text-danger" asp-validation-for="Image"></span>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">Save</button>
+        </div>
+    </form>
+</div>

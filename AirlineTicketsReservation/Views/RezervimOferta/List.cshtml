@@ -1,0 +1,75 @@
+﻿@model PaginatedList<AirlineTicketsReservation.Models.RezervimOferta>
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Të dhënat për Rezervime të Ofertave</h1>
+</div>
+
+<div class="container py-5">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Emri</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Data e Rezervimit</th>
+                    <th scope="col">Data e Kthimit</th>
+                    <th scope="col">Cmimi</th>
+                    <th scope="col">Valuta</th>
+                    <th scope="col">Oferta Id</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rezervimOferta in Model)
+                {
+                    <tr>
+                        <td>@rezervimOferta.Id</td>
+                        <td>@($"{rezervimOferta.Emri} {rezervimOferta.Mbiemri}")</td>
+                        <td>@rezervimOferta.Email</td>
+                        <td>@rezervimOferta.Data_E_Rezervimit</td>
+                        <td>@rezervimOferta.Data_E_Kthimit</td>
+                        <td>@rezervimOferta.Cmimi</td>
+                        <td>@rezervimOferta.Currency</td>
+                        <td>@rezervimOferta.OfertaId</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm"
+                               asp-area=""
+                               asp-controller="RezervimOferta"
+                               asp-action="Edit"
+                               asp-route-id="@rezervimOferta.Id">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            @if (Model.HasPreviousPage)
+            {
+                <a asp-action="List" asp-route-page="1" class="btn btn-outline-secondary">First</a>
+                <a asp-action="List" asp-route-page="@Model.PageIndex - 1" class="btn btn-outline-secondary">Previous</a>
+            }
+
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <a asp-action="List" asp-route-page="@i" class="btn btn-outline-secondary @(i == Model.PageIndex ? "active" : "")">@i</a>
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <a asp-action="List" asp-route-page="@Model.PageIndex + 1" class="btn btn-outline-secondary">Next</a>
+                <a asp-action="List" asp-route-page="@Model.TotalPages" class="btn btn-outline-secondary">Last</a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>No Reservation Offers Found!</p>
+        </div>
+    }
+</div>

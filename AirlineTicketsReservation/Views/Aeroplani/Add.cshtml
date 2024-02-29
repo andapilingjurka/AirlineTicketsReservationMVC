@@ -1,0 +1,89 @@
+﻿@model AirlineTicketsReservation.Models.ViewModels.AddAeroplaniRequest
+@{
+}
+
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Shto Aeroplan</h1>
+</div>
+
+<div class="container py-5">
+    <form method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Numri i Uleseve VIP</label>
+            <input type="text" class="form-control" id="heading" asp-for="Nr_Uleseve_VIP" required />
+            <span id="numriUleseveVIPError" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Numri i Uleseve Biznes</label>
+            <input type="text" class="form-control" id="pageTitle" asp-for="Nr_Uleseve_Biznes" required />
+            <span id="numriUleseveBiznesError" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Numri i Uleseve Ekonomike</label>
+            <input type="text" class="form-control" id="pageTitle" asp-for="Nr_Uleseve_Ekonomike" required />
+            <span id="numriUleseveEkonomikeError" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Kompania</label>
+            <input type="text" class="form-control" id="shortDescription" asp-for="Kompania" required />
+            <span id="kompaniaError" class="text-danger"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">
+                Save
+            </button>
+        </div>
+
+    </form>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('form');
+
+            if (form) {
+                form.addEventListener('submit', function (event) {
+                    var numriUleseveVIP = document.getElementById('heading').value.trim();
+                    var numriUleseveBiznes = document.getElementById('pageTitle').value.trim();
+                    var numriUleseveEkonomike = document.getElementById('pageTitle').value.trim();
+                    var kompania = document.getElementById('shortDescription').value.trim();
+
+                    var validationMessages = [];
+
+                    if (numriUleseveVIP === '') {
+                        validationMessages.push('Numri i Uleseve VIP is required.');
+                    }
+
+                    if (numriUleseveBiznes === '') {
+                        validationMessages.push('Numri i Uleseve Biznes is required.');
+                    }
+
+                    if (numriUleseveEkonomike === '') {
+                        validationMessages.push('Numri i Uleseve Ekonomike is required.');
+                    }
+
+                    if (kompania === '') {
+                        validationMessages.push('Kompania is required.');
+                    }
+
+                    if (validationMessages.length > 0) {
+                        // Display validation messages near respective input fields
+                        document.getElementById('numriUleseveVIPError').innerText = validationMessages.includes('Numri i Uleseve VIP is required.') ? 'Numri i Uleseve VIP is required.' : '';
+                        document.getElementById('numriUleseveBiznesError').innerText = validationMessages.includes('Numri i Uleseve Biznes is required.') ? 'Numri i Uleseve Biznes is required.' : '';
+                        document.getElementById('numriUleseveEkonomikeError').innerText = validationMessages.includes('Numri i Uleseve Ekonomike is required.') ? 'Numri i Uleseve Ekonomike is required.' : '';
+                        document.getElementById('kompaniaError').innerText = validationMessages.includes('Kompania is required.') ? 'Kompania is required.' : '';
+
+                        event.preventDefault(); // Prevent form submission
+                    }
+                });
+            }
+        });
+    </script>
+}

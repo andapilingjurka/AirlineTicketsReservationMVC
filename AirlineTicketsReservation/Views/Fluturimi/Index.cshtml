@@ -1,0 +1,55 @@
+﻿@model List<Fluturimi>
+
+<style>
+    .jumbotron {
+        margin: 0;
+        background: url('@Url.Content("~/images/Picture2.jpg")') no-repeat center center fixed;
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 100px;
+        height: 100vh;
+        padding-top: 250px
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+
+    .fluturimet{
+        margin-bottom:100px;
+        margin-top:100px;
+    }
+</style>
+
+<div class="jumbotron">
+    <h1 class="display-4">Eksploro Fluturimet Tona</h1>
+    <p class="lead">Gjej fluturimin perfekt për aventurën tënde të ardhshme.</p>
+</div>
+
+<div class="container mt-4 fluturimet">
+    <div class="row">
+        @foreach (var fluturimi in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Fluturimi: @fluturimi.NrFluturimit</h5>
+                        <p class="card-text">Aeroporti i Nisjes: @fluturimi.DeparuteAirport</p>
+                        <p class="card-text">Aeroporti i Arritjes: @fluturimi.ArrivalAirport</p>
+                        <p class="card-text">Koha e Nisjes: @fluturimi.KohaENisjes</p>
+                        <p class="card-text">Koha e Arritjes: @fluturimi.KohaEArritjes</p>
+                        <p class="card-text">Çmimi: $@fluturimi.Cmimi</p>
+                        <!-- Shtoni fusha tjera sipas nevojës -->
+                        <a href="@Url.Action("Add", "Rezervimi", new { fluturimiId =  @fluturimi.Id })" class="btn btn-success">Rezervo</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

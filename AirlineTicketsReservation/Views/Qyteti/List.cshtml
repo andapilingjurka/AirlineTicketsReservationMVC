@@ -1,0 +1,104 @@
+﻿@using AirlineTicketsReservation.Models;
+@model PaginatedList<AirlineTicketsReservation.Models.Qyteti>
+@{
+}
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Të dhënat për qytetet</h1>
+</div>
+
+<div class="container  py-5">
+    <div class="row">
+        <div class="col-md-6 mb-5">
+            <a asp-area="" asp-controller="Qyteti" asp-action="Add" class="btn btn-primary">
+                Add
+            </a>
+        </div>
+        <div class="col-md-6 ">
+            <form method="get" asp-action="List" class="text-md-right">
+                <label for="filterLetter">Filter by starting letter:</label>
+                <select name="filterLetter" id="filterLetter">
+                    <option value="">All</option>
+                    @for (char letter = 'A'; letter <= 'Z'; letter++)
+                    {
+                        <option value="@letter">@letter</option>
+                    }
+                </select>
+                <button type="submit" class="btn btn-secondary">Filter</button>
+            </form>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+
+        <table class="table mb-5">
+            <thead class="thead-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Emri</th>
+                    <th>ZipKodi</th>
+                    <th>ShtetiID</th>
+                    <th>Foto</th>
+
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var qyteti in Model)
+                {
+                    <tr>
+
+                        <td>@qyteti.Id</td>
+                        <td>@qyteti.Emri</td>
+                        <td>@qyteti.ZipCode</td>
+                        <td>@qyteti.ShtetiId</td>
+                        <td><img src="~/images/Qyteti/@Url.Content(qyteti.Image)" alt="Qyteti Image" style="max-width: 200px; max-height: 200px;"></td>
+
+                        <td>
+                            <a asp-area="" asp-controller="Qyteti"
+                               asp-action="Edit" asp-route-id="@qyteti.Id" class="btn btn-warning">
+                                Edit
+                            </a>
+                        </td>
+
+                        <td>
+                            <form asp-controller="Qyteti" asp-action="Delete" method="post">
+                                <input type="hidden" name="Id" value="@qyteti.Id" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-center mb-5">
+            @if (Model.HasPreviousPage)
+            {
+                <a asp-action="List" asp-route-page="1" class="btn btn-outline-secondary">First</a>
+                <a asp-action="List" asp-route-page="@Model.PageIndex - 1" class="btn btn-outline-secondary">Previous</a>
+            }
+
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <a asp-action="List" asp-route-page="@i" class="btn btn-outline-secondary @(i == Model.PageIndex ? "active" : "")">@i</a>
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <a asp-action="List" asp-route-page="@Model.PageIndex + 1" class="btn btn-outline-secondary">Next</a>
+                <a asp-action="List" asp-route-page="@Model.TotalPages" class="btn btn-outline-secondary">Last</a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p>No City Found!</p>
+        </div>
+    }
+
+</div>

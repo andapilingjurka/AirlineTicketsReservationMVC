@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AirlineTicketsReservation.Models.ViewModels.AddFluturimiRequest
+@{
+}
+
+<div class=" bg-opacity-10 py-2 text-center">
+    <h1>Shto Fluturim</h1>
+</div>
+
+<div class="container py-5">
+    <form method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Numri Fluturimit</label>
+            <input type="text" class="form-control" id="heading" asp-for="NrFluturimit" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Aeroporti i Nisjes</label>
+            <input type="text" class="form-control" id="pageTitle" asp-for="DeparuteAirport" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Aeroporti i Arritjes</label>
+            <input type="text" class="form-control" id="pageTitle" asp-for="ArrivalAirport" required />
+        </div>
+
+        <!--me javascript e konvertojme pjesen e content ne wysiwyg-->
+
+
+        <div class="mb-3">
+            <label class="form-label">Koha e nisjes:</label>
+
+            <input type="datetime-local" class="form-control" asp-for="KohaENisjes" required />
+           
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Koha e arritjes:</label>
+
+            <input type="datetime-local" class="form-control" asp-for="KohaEArritjes" required />
+             
+            
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Cmimi:</label>
+            <input type="datetime" class="form-control" id="shortDescription" asp-for="Cmimi" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Aeroplani</label>
+            @Html.DropDownListFor(model => model.AeroplaniId, Model.Aeroplani, "Select Aeroplani", new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Qyteti</label>
+            @Html.DropDownListFor(model => model.QytetiId, Model.Qyteti, "Select Qyteti", new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">
+                Save
+            </button>
+        </div>
+
+    </form>
+</div>

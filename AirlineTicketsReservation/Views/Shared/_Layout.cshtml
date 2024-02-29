@@ -1,0 +1,282 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AirlineTicketsReservation</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AirlineTicketsReservation.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Bootstrap JS (Popper.js and jQuery are required for Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header>
+        <style>
+            .navbar-nav .nav-item.active a {
+                border: 1px solid white;
+                border-radius: 5px;
+            }
+        </style>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow " style="background-color: #271e69 !important;">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color: white;">ATR</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item @(Context.Request.Path == "/" && Context.Request.Method == "GET" ? "active" : "")">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+
+                        <li class="nav-item @(Context.Request.Path == "/Home/About" ? "active" : "")">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">RrethNesh</a>
+                        </li>
+
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item @(Context.Request.Path == "/Qyteti" ? "active" : "")">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Qyteti" asp-action="Index">Qytetet</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Sherbimet
+                                </a>
+                                <ul class="dropdown-menu">
+
+
+                                    <a class="dropdown-item"
+                                       asp-area=""
+                                       asp-controller="Hoteli"
+                                       asp-action="Index">
+                                        Hotelet
+                                    </a>
+
+                                    <a class="dropdown-item"
+                                       asp-area=""
+                                       asp-controller="Oferta"
+                                       asp-action="Index">
+                                        Ofertat
+                                    </a>
+
+                                </ul>
+                            </li>
+
+
+                            <li class="nav-item @(Context.Request.Path == "/Fluturimi" ? "active" : "")">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Fluturimi" asp-action="Index">Fluturimet</a>
+                            </li>
+
+
+
+                            <li class="nav-item @(Context.Request.Path == "/Vetura" ? "active" : "")">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Vetura" asp-action="Index">Veturat</a>
+                            </li>
+
+
+
+                        }
+
+
+                        <li class="nav-item @(Context.Request.Path == "/Kontakti/Add" && Context.Request.Method == "GET" ? "active" : "")">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Kontakti" asp-action="Add">Kontakti</a>
+                        </li>
+
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <ul class="dropdown-menu">
+
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="AdminUsers"
+                                       asp-action="List">
+                                        All Users
+                                    </a>
+
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Shteti"
+                                       asp-action="List">
+                                        Shteti
+                                    </a>
+
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Qyteti"
+                                       asp-action="List">
+                                        Qyteti
+                                    </a>
+
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Hoteli"
+                                       asp-action="List">
+                                        Hoteli
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Aeroplani"
+                                       asp-action="List">
+                                        Aeroplanet
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Fluturimi"
+                                       asp-action="List">
+                                        Fluturimet
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Oferta"
+                                       asp-action="List">
+                                        Ofertat
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Vetura"
+                                       asp-action="List">
+                                        Veturat
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Aeroporti"
+                                       asp-action="List">
+                                        Aeroportet
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Kontakti"
+                                       asp-action="List">
+                                        Kontakti
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="RezervimiV"
+                                       asp-action="List">
+                                        Rezervimet
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="Rezervimi"
+                                       asp-action="List">
+                                        Rezervimet e Fluturimeve
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area="Admin"
+                                       asp-controller="RezervimOferta"
+                                       asp-action="List">
+                                        Rezervimet e Ofertave
+                                    </a>
+                                </ul>
+                            </li>
+                        }
+
+
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Rezervimet e mija
+                                </a>
+                                <ul class="dropdown-menu">
+
+
+                                    <a class="dropdown-item"
+                                       asp-area=""
+                                       asp-controller="RezervimOferta"
+                                       asp-action="MyReservations">
+                                        Rezervimet e Ofertave
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area=""
+                                       asp-controller="RezervimiV"
+                                       asp-action="MyReservations">
+                                        Rezervimet e Veturave
+                                    </a>
+                                    <a class="dropdown-item"
+                                       asp-area=""
+                                       asp-controller="Rezervimi"
+                                       asp-action="MyReservations">
+                                        Rezervimet e Fluturimeve
+                                    </a>
+
+
+                                </ul>
+                            </li>
+                        }
+
+
+
+
+                    </ul>
+
+
+                    @if (signInManager.IsSignedIn(User))
+                    {
+
+                        <div class="me-3 text-light">
+                            @User?.Identity?.Name
+                        </div>
+
+
+                        <a class="btn me-3 bg-light text-dark"
+                           asp-area=""
+                           asp-controller="Account"
+                           asp-action="Logout">Logout</a>
+                    }
+                    else
+                    {
+                        <a class="btn me-3 bg-light text-dark"
+                           asp-area=""
+                           asp-controller="Account"
+                           asp-action="Login">Login</a>
+
+                        <a class="btn me-3 bg-light text-dark"
+                           asp-area=""
+                           asp-controller="Account"
+                           asp-action="Register">Register</a>
+
+                    }
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="background-color: #271e69 !important;">
+        <div class="container text-light" style="text-align:center;">
+            &copy; 2024 - AirlineTicketsReservation
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
